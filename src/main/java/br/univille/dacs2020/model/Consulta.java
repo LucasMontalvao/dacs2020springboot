@@ -26,7 +26,7 @@ public class Consulta {
     private String status;
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
     private Paciente paciente;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "CONSULTA_ID")
     private List<ProcedimentoRealizado> Procedimentos;
 
@@ -67,6 +67,10 @@ public class Consulta {
     }
 
     public void setProcedimentos(ArrayList<ProcedimentoRealizado> procedimentos) {
+        Procedimentos = procedimentos;
+    }
+
+    public void setProcedimentos(List<ProcedimentoRealizado> procedimentos) {
         Procedimentos = procedimentos;
     }
 }

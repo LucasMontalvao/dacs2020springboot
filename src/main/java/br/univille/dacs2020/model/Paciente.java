@@ -20,7 +20,6 @@ public class Paciente {
     private String sexo;
     @Temporal(value =TemporalType.DATE)
     private Date dataNascimento;
-    //private List<Consultas> consulta;
 
     public long getId() {
         return id;
