@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-    <head>
-        <title>Titulo muito loco do Xesquebrele</title>
-    </head>
+    <head th:include="layout :: htmlhead"></head>
     <body>
-        <H1> Zaralhância do Brelele</H1>
-        <strong th:text="${now}"></strong>
+        <div class="container">
+            <nav th:replace="layout :: menu">(menu)</nav>
+            <H1> Layout Bunitu</H1>
+            <strong th:text="${now}"></strong>
+        </div>
+
+        <div th:include="layout :: footer" id="footer">(footer)</div>
     </body>
 </html> 
