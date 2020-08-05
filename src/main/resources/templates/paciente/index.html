@@ -9,13 +9,18 @@
             <h1>Paciente</h1>
             <a th:href="@{/paciente/novo}" 
                 class="btn btn-primary" role="button">Novo</a>
-            <table class="table">
+            <table class="table" id="pacientes">
                 <thead>
                     <th>Id</th>
                     <th>Nome</th>
                     <th>Sexo</th>
                     <th>Data de Nascimento</th>
-                    <th></th>
+                    <th>
+                        <form class="form-inline mr-auto">
+                            <input class="form-control mr-sm-2" type="text" placeholder="Nome do Paciente" aria-label="Search">
+                            <button class="btn blue-gradient btn-rounded btn-sm my-0" type="submit">Pesquisar</button>
+                          </form>
+                    </th>
                 </thead>
                 <tbody>
                     <tr th:each="umpaciente : ${listapacientes}">
@@ -25,11 +30,32 @@
                         <td th:text="${umpaciente.dataNascimento}"></td>
                         <td>
                             <a th:href="@{'/paciente/alterar/' + ${umpaciente.id}}"class="btn btn-primary">Alterar</a>
+
+                            <button class='btn btn-danger js-delete'
+                                th:data-paciente-id="${umpaciente.id}">Excluir</button>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
         <div th:include="layout :: footer" id="footer">(footer)</div>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("#pacientes").on("click", ".js-delete", function(){
+                    var button = $(this);
+                    bootbox.confirm("Confirma exclusão do paciente?", function(result){
+                        if(result){
+                            $.ajax({                                
+                                url: "/paciente/delete/" + button.attr("data-paciente-id"),
+                                method: "GET",                                
+                                success: function () {                                    
+                                    window.location.href = "/paciente/" 
+                                }                            
+                            });
+                        }
+                    })
+                })
+            })
+        </script>
     </body>
 </html> 

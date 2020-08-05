@@ -27,8 +27,6 @@ public class PacienteServiceImpl implements PacienteService {
     @Override
     public void delete(Paciente paciente) {
         repository.delete(paciente);
-
     }
-
     
 }
