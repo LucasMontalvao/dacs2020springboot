@@ -9,6 +9,6 @@ import br.univille.dacs2020.model.Paciente;
 @Service
 public interface PacienteService {
     void save(Paciente paciente);
-    List<Paciente> getAll();
+    List<Paciente> getAll(String keyword);
     void delete(Paciente paciente);
 }

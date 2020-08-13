@@ -3,6 +3,7 @@ package br.univille.dacs2020.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -21,8 +22,8 @@ public class PacienteController {
     private PacienteService service;
 
     @GetMapping
-    public ModelAndView index(){
-        List<Paciente> listaPacientes = service.getAll();
+    public ModelAndView index(@Param("keyword")String keyword){
+        List<Paciente> listaPacientes = service.getAll(keyword);
         return new ModelAndView("paciente/index", "listapacientes", listaPacientes);
     }
 
